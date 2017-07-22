@@ -27,7 +27,7 @@ values."
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.spacemacs.d")
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
@@ -61,6 +61,7 @@ values."
             shell-default-shell 'eshell)
      spell-checking
      syntax-checking
+     wincer
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -315,6 +316,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (setq exec-path-from-shell-check-startup-files nil)
   (setq configuration-layer--elpa-archives
         '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
           ("org-cn"   . "http://elpa.zilongshanren.com/org/")
