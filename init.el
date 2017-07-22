@@ -43,13 +43,14 @@ values."
      (javascript :variables
                  javascript-disable-tern-port-files nil)
      auto-completion
-     better-defaults
+     (better-defaults :variables
+                      better-defaults-move-to-end-of-code-first t) ;;comment
      html
      scheme
      emacs-lisp
      git
      ;; markdown
-     org
+     ;; org
      (python :variables
              python-enable-yapf-format-on-save t
              python-fill-column 80
@@ -273,13 +274,13 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers 'relative
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smartparens-strict-mode t
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
@@ -331,10 +332,10 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; 显示行号
-  (add-hook 'find-file-hook(lambda()
-                             (linum-mode t)
-                             ;;(turn-on-fci-mode)
-                             ))
+  ;;(add-hook 'find-file-hook(lambda()
+  ;;                           (linum-mode t)
+  ;;                           (turn-on-fci-mode)
+  ;;                           ))
   (setq powerline-default-separator 'slant)
   (setq scheme-program-name "mit-scheme")
   ;; Bind clang-format-region to C-M-tab in all modes:
@@ -347,6 +348,7 @@ you should place your code here."
   (setq-default ispell-program-name "aspell")
   ;; use American English as ispell default dictionary
   (ispell-change-dictionary "american" t)
+  (setq ns-use-srgb-colorspace nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
