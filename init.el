@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     markdown
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -40,8 +41,7 @@ values."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
-     (javascript :variables
-                 javascript-disable-tern-port-files nil)
+     javascript
      auto-completion
      (better-defaults :variables
                       better-defaults-move-to-end-of-code-first t) ;;comment
@@ -50,7 +50,7 @@ values."
      emacs-lisp
      git
      ;; markdown
-     ;; org
+     org
      (python :variables
              python-enable-yapf-format-on-save t
              python-fill-column 80
@@ -59,7 +59,7 @@ values."
             shell-default-height 30
             shell-default-position 'bottom
             shell-default-shell 'eshell)
-     spell-checking
+     ;; spell-checking
      syntax-checking
      wincer
      ;; version-control
@@ -142,6 +142,7 @@ values."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          solarized-light
+                         solarized-dark
                          spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -323,6 +324,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
           ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+  (setq yas-snippet-dirs "~/.emacs.d/private/snippets/")
   )
 
 (defun dotspacemacs/user-config ()
@@ -333,10 +335,11 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; 显示行号
-  ;;(add-hook 'find-file-hook(lambda()
+  (add-hook 'find-file-hook(lambda()
   ;;                           (linum-mode t)
-  ;;                           (turn-on-fci-mode)
-  ;;                           ))
+                             (turn-on-fci-mode)
+                             ))
+  (smartparens-global-mode t)
   (setq powerline-default-separator 'slant)
   (setq scheme-program-name "mit-scheme")
   ;; Bind clang-format-region to C-M-tab in all modes:

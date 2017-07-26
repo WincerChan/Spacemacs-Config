@@ -1,0 +1,7 @@
+(defun wincer/open-file-with-projectile-or-counsel-git ()
+  (interactive)
+  (if (wincer/vcs-project-root)
+      (counsel-git)
+    (if (projectile-project-p)
+        (projectile-find-file)
+      (ido-find-file))))
