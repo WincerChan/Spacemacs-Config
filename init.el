@@ -341,7 +341,7 @@ you should place your code here."
                              ))
   (smartparens-global-mode t)
   (setq powerline-default-separator 'slant)
-  (setq scheme-program-name "mit-scheme")
+  ;; (setf geiser-active-implementations '(mit))
   ;; Bind clang-format-region to C-M-tab in all modes:
   (global-set-key [C-M-tab] 'clang-format-region)
   ;; Bind clang-format-buffer to tab on the c++-mode only:
