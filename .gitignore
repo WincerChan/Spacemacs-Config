@@ -1,6 +1,6 @@
 # Compiled
 *.elc
-
+.directory
 # Packaging
 .cask
 
