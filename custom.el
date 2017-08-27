@@ -4,6 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-idle-delay 0.1)
+ '(company-minimum-prefix-length 1)
  '(exec-path-from-shell-arguments (quote ("-l" "-i")))
  '(geiser-active-implementations (quote (mit racket chicken chez guile chibi)))
  '(geiser-default-implementation (quote mit))
