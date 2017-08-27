@@ -15,7 +15,7 @@ values."
    ;; with a supported type is opened). Possible values are `all', `unused'
    ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
    ;; not listed in variable `dotspacemacs-configuration-layers'), `all' will
-   ;; lazy install any layer that support lazy installation even the layers
+   ;; lazy (add-hook 'prog-mode-hook 'spacemacs/toggle-hungry-delete-on)install any layer that support lazy installation even the layers
    ;; listed in `dotspacemacs-configuration-layers'. `nil' disable the lazy
    ;; installation feature and you have to explicitly list a layer in the
    ;; variable `dotspacemacs-configuration-layers' to install it.
@@ -141,8 +141,8 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         solarized-light
                          solarized-dark
+                         solarized-light
                          spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -340,12 +340,14 @@ you should place your code here."
                              (turn-on-fci-mode)
                              ))
   (smartparens-global-mode t)
+  (hungry-delete-mode t)
   (setq powerline-default-separator 'slant)
   ;; (setf geiser-active-implementations '(mit))
   ;; Bind clang-format-region to C-M-tab in all modes:
   (global-set-key [C-M-tab] 'clang-format-region)
   ;; Bind clang-format-buffer to tab on the c++-mode only:
   (add-hook 'c++-mode-hook 'clang-format-bindings)
+  (add-hook 'prog-mode-hook 'spacemacs/toggle-hungry-delete-on)
   (defun clang-format-bindings ()
     (define-key c++-mode-map [tab] 'clang-format-buffer))
   ;; use apsell as ispell backend
