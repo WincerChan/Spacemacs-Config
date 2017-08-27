@@ -340,7 +340,7 @@ you should place your code here."
                              (turn-on-fci-mode)
                              ))
   (smartparens-global-mode t)
-  (hungry-delete-mode t)
+  (defadvice hungry-delete-backward (before sp-delete-pair-advice activate) (save-match-data (sp-delete-pair (ad-get-arg 0))))
   (setq powerline-default-separator 'slant)
   ;; (setf geiser-active-implementations '(mit))
   ;; Bind clang-format-region to C-M-tab in all modes:
