@@ -43,6 +43,9 @@
 (defun wincer/init-nodejs-repl ()
   (use-package nodejs-repl
     :init
-    (spacemacs/set-leader-keys "os" 'nodejs-repl)))
+    (spacemacs/set-leader-keys "osi" 'nodejs-repl)
+    (spacemacs/set-leader-keys "osb" 'nodejs-repl-send-buffer)
+    (spacemacs/set-leader-keys "osr" 'nodejs-repl-send-region)
+    (spacemacs/set-leader-keys "osl" 'nodejs-repl-send-line)))
 
 ;;; packages.el ends here
