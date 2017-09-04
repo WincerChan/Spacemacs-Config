@@ -42,6 +42,9 @@ values."
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
      javascript
+     (javascript :variables
+                 tern-command '("node" "/home/wincer/.npm-global/bin/tern")
+                 javascript-disable-tern-port-files nil)
      auto-completion
      (better-defaults :variables
                       better-defaults-move-to-end-of-code-first t) ;;comment
@@ -141,8 +144,8 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         solarized-dark
                          solarized-light
+                         solarized-dark
                          spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
