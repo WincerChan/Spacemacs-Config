@@ -30,7 +30,8 @@
 ;;; Code:
 
 (defconst wincer-packages
-  '(youdao-dictionary)
+  '(youdao-dictionary
+    nodejs-repl)
   )
 
 (defun wincer/init-youdao-dictionary ()
@@ -39,5 +40,9 @@
     (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
     )
   )
+(defun wincer/init-nodejs-repl ()
+  (use-package nodejs-repl
+    :init
+    (spacemacs/set-leader-keys "os" 'nodejs-repl)))
 
 ;;; packages.el ends here
