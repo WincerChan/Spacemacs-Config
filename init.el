@@ -341,7 +341,7 @@ you should place your code here."
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
                       charset (font-spec :family "Microsoft YaHei"
-                                         :size 16)))
+                                         :size 18)))
   ;; 显示行号
   (add-hook 'find-file-hook(lambda()
   ;;                           (linum-mode t)
