@@ -337,6 +337,11 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; 中文字体
+  (dolist (charset '(kana han symbol cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font)
+                      charset (font-spec :family "Microsoft YaHei"
+                                         :size 16)))
   ;; 显示行号
   (add-hook 'find-file-hook(lambda()
   ;;                           (linum-mode t)
