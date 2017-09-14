@@ -31,7 +31,13 @@
 
 (defconst wincer-packages
   '(youdao-dictionary
-    nodejs-repl)
+    nodejs-repl
+    company-irony
+    company-irony-c-headers
+    irony
+    irony-eldoc
+    flycheck-irony
+    )
   )
 
 (defun wincer/init-youdao-dictionary ()
@@ -50,4 +56,57 @@
     )
   )
 
+(defun wincer/init-irony ()
+  (use-package irony
+    :defer t
+    :commands (irony-mode irony-install-server)
+    :init
+    (progn
+      (add-hook 'c-mode-hook 'irony-mode)
+      (add-hook 'c++-mode-hook 'irony-mode))
+    :config
+    (progn
+      (setq irony-user-dir (f-slash (f-join user-home-directory "bin" "irony")))
+      (setq irony-server-install-prefix irony-user-dir)
+      ;;(setq irony-cdb-search-directory-list "/home/dean/work/gitlab/gitlab.com/mystudy/mongodb/code/simple/")
+      (add-hook 'c++-mode-hook (lambda () (setq irony-additional-clang-options '("-std=c++11"))))
+      (defun irony/irony-mode-hook ()
+        (define-key irony-mode-map [remap completion-at-point] 'irony-completion-at-point-async)
+        (define-key irony-mode-map [remap complete-symbol] 'irony-completion-at-point-async))
+
+      (add-hook 'irony-mode-hook 'irony/irony-mode-hook)
+      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))))
+;;?
+(when (configuration-layer/layer-usedp 'auto-completion)
+  (defun wincer/init-company-irony ()
+    (use-package company-irony
+      :if (configuration-layer/package-usedp 'company)
+      :defer t
+      :commands company-irony
+      :init
+      (progn
+        (push 'company-irony company-backends-c-mode-common)
+        (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands))
+      )))
+
+(when (configuration-layer/layer-usedp 'auto-completion)
+  (defun wincer/init-company-irony-c-headers ()
+    (use-package company-irony-c-headers
+      :if (configuration-layer/package-usedp 'company)
+      :defer t
+      :commands company-irony-c-headers
+      :init
+      (push 'company-irony-c-headers company-backends-c-mode-common)
+      )))
+(when (configuration-layer/layer-usedp 'syntax-checking)
+  (defun wincer/init-flycheck-irony ()
+    (use-package flycheck-irony
+      :if (configuration-layer/package-usedp 'flycheck)
+      :defer t
+      :init (add-hook 'irony-mode-hook 'flycheck-irony-setup))))
+(defun wincer/init-irony-eldoc ()
+  (use-package irony-eldoc
+    :commands (irony-eldoc)
+    :init
+    (add-hook 'irony-mode-hook 'irony-eldoc)))
 ;;; packages.el ends here
