@@ -297,7 +297,7 @@ values."
    dotspacemacs-highlight-delimiters 'all
    ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
@@ -353,12 +353,13 @@ you should place your code here."
   (setq powerline-default-separator 'slant)
   ;; (setf geiser-active-implementations '(mit))
   ;; Bind clang-format-region to C-M-tab in all modes:
-  (global-set-key [C-M-tab] 'clang-format-region)
+  (global-set-key [C-tab] 'clang-format-region)
   ;; Bind clang-format-buffer to tab on the c++-mode only:
   (add-hook 'c++-mode-hook 'clang-format-bindings)
   (add-hook 'prog-mode-hook 'spacemacs/toggle-hungry-delete-on)
   (defun clang-format-bindings ()
-    (define-key c++-mode-map [tab] 'clang-format-buffer))
+    (define-key c++-mode-map [C-tab] 'clang-format-buffer)
+    (define-key c-mode-map [C-tab] 'clang-format-buffer))
   ;; use apsell as ispell backend
   (setq-default ispell-program-name "aspell")
   ;; use American English as ispell default dictionary
